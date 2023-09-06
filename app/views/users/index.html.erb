@@ -1,0 +1,19 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Users</h1>
+
+<div id="users">
+  <% @users.each do |user| %>
+    <%= render user %>
+    <p>
+      <%= link_to "Show this user", user %>
+    </p>
+  <% end %>
+</div>
+<% cities = @users.pluck(:city).uniq %>
+<ul>
+  <% cities.each do |city| %>
+    <li><%= "#{city}: #{@user_presenter.count_users_by_city(city)}" %></li>
+  <% end %>
+</ul>
+<%= link_to "New user", new_user_path %>
